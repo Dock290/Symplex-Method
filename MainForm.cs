@@ -458,24 +458,34 @@ namespace Lab_1
                 }
             }
 
-            List<SymplexTable> symplexTables = Symplex.Solve(k, x, isMax);
-
-            int current = symplexTables.Count - 1;
-
-            f = symplexTables[current].F;
-
-            bool isError = symplexTables[current].IsError;
-
+            bool isError = false;
             string error = ERROR_UNKNOWN;
-            Symplex.ERROR_CODE_MESSAGE_PAIRS.TryGetValue(symplexTables[current].ErrorCode, out error);
 
-            while (current >= 0)
+            try
             {
-                symplexTableForms.Add(new SymplexTableForm(symplexTables[current], current));
-                symplexTableForms[symplexTableForms.Count - 1].Show();
-                symplexTableForms[symplexTableForms.Count - 1].Location = new System.Drawing.Point((Location.X + Width), Location.Y + 20 * current);
+                List<SymplexTable> symplexTables = Symplex.Solve(k, x, isMax);
 
-                current--;
+                int current = symplexTables.Count - 1;
+
+                f = symplexTables[current].F;
+
+                isError = symplexTables[current].IsError;
+
+                Symplex.ERROR_CODE_MESSAGE_PAIRS.TryGetValue(symplexTables[current].ErrorCode, out error);
+
+                while (current >= 0)
+                {
+                    symplexTableForms.Add(new SymplexTableForm(symplexTables[current], current));
+                    symplexTableForms[symplexTableForms.Count - 1].Show();
+                    symplexTableForms[symplexTableForms.Count - 1].Location = new System.Drawing.Point((Location.X + Width), Location.Y + 20 * current);
+
+                    current--;
+                }
+            }
+            catch (Exception exeption)
+            {
+                isError = true;
+                error = exeption.Message;
             }
 
             if (isError)
@@ -486,7 +496,7 @@ namespace Lab_1
             }
             else
             {
-                labelParsingResult.Text = string.Format("f = {0}", f);
+                labelParsingResult.Text = $"f = {f}";
                 labelParsingResult.Font = new System.Drawing.Font("Courier New", 8.25f);
                 labelParsingResult.ForeColor = System.Drawing.SystemColors.ControlText;
             }
@@ -524,7 +534,7 @@ namespace Lab_1
                 }
                 else
                 {
-                    labelParsingResult.Text = string.Format("Не удалось открыть файл\n{0}", saveFileDialog.FileName);
+                    labelParsingResult.Text = $"Не удалось открыть файл\n{saveFileDialog.FileName}";
                     labelParsingResult.ForeColor = System.Drawing.SystemColors.ControlText;
                     labelParsingResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
                 }

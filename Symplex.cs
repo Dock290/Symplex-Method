@@ -392,7 +392,7 @@ namespace Lab_1
 
                 for (int j = 0; j < Height; j++)
                 {
-                    symplexTable.Alpha[i] += symplexTable.C[symplexTable.A[j]] * symplexTable.Matrix[j][i];
+                    symplexTable.Alpha[i] += symplexTable.Cb[j] * symplexTable.Matrix[j][i];
                 }
 
                 symplexTable.Alpha[i] -= C[i];
@@ -520,7 +520,7 @@ namespace Lab_1
 
                         for (int i = 0; i < Width; i++)
                         {
-                            if (Alpha[i] < 0 && Alpha[i] > buffer)
+                            if (Alpha[i] > 0 && Alpha[i] > buffer)
                             {
                                 buffer = Alpha[i];
                                 MainColumn = i;

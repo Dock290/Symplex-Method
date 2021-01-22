@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Lab_1")]
+[assembly: AssemblyTitle("Симплекс-таблицы")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("Lab_1")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2020")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Симплекс-таблицы")]
+[assembly: AssemblyCopyright("Разработано на кафедре ПОУТС ФГБОУ ВО ПГУТИ")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
